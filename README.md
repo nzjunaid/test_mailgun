@@ -6,19 +6,24 @@ For running the test use the command
 
 Run the server using the command 
 
-	```node server.js```
+	```
+	node server.js
+	
+	```
 
-For Post Api('inserting values'),give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.(It is in urlencoded format)
+For Post Api which is used for inseting values to the file,give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.It is in form urlencoded format.For the above given api, all invalid entries(name , invalid email, age>120 , age<16 ) will be rejected, even though date of birth is optional, invalid date of births are not allowed.
+
 An example for the insert would be
 
 ```
  curl -d "name=junaid&email=junaidnz97@gmail.com&dateofbirth=1997-09-16" -X POST http://localhost:8080
 ```
-For the above given api,all invalid entries(name,invalid email,age>120,age<16 will be rejected),date of birth is optional,but invalid date of birth is not allowed
 
 	
 
-For Get Api('all content'),give  a get request to "localhost:8080/allcontent" 
+For Get Api which is used for retrieving all the contents from the file , give  a get request to "localhost:8080/allcontent" 
+
+An example for getting all 
 
 ```
 	curl -XGET localhost:8080/allcontent 
@@ -27,8 +32,9 @@ The above api,retrieves all the contents from the file.
 
 
 
-For Get Api('latest endpoint'),give  a get request to "localhost:8080/getlatestendpoint" 
+For Get Api which is used to retreive the latest end point from the file, give  a get request to "localhost:8080/getlatestendpoint" 
 
+An example Api for this would be
 ```
 
 	curl -XGET localhost:8080/getlatestendpoint 
@@ -37,11 +43,12 @@ For Get Api('latest endpoint'),give  a get request to "localhost:8080/getlateste
 The above api retrieves the last entry of the file.
 
 
-For  Get Api('get xth content'),give  a get request to "localhost:8080/getxthcontent?x=3" with any integer value of x as a parameter. 
+For  Get Api which is used to get the xth content from the file , give  a get request to "localhost:8080/getxthcontent?x=3" with any integer value of x as a parameter. 
 
 ```
 
 	curl -XGET localhost:8080/getxthcontent?x=3
 
 ```
+
 The above api retrives the xth entry from the file.
