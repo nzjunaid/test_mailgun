@@ -5,13 +5,11 @@ For running the test use the command
 	```npm test```
 
 Run the server using the command 
-
-	```
-	node server.js
+	```node server.js```
 	
-	```
+	
 
-For Post Api which is used for inseting values to the file,give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.It is in form urlencoded format.For the above given api, all invalid entries(name , invalid email, age>120 , age<16 ) will be rejected, even though date of birth is optional, invalid date of births are not allowed.
+For Post Api which is used for inseting values to the file,give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.It is in form urlencoded format.For the above given api, all invalid entries (invalid name , invalid email , age>120 , age<16 ) will be rejected , even though date of birth is optional , invalid date of births are not allowed.
 
 An example for the insert would be
 
@@ -28,11 +26,11 @@ An example for getting all
 ```
 	curl -XGET localhost:8080/allcontent 
 ```
-The above api,retrieves all the contents from the file.
+The above api , retrieves all the contents from the file.
 
 
 
-For Get Api which is used to retreive the latest end point from the file, give  a get request to "localhost:8080/getlatestendpoint" 
+For Get Api which is used to retreive the latest end point from the file , give  a get request to "localhost:8080/getlatestendpoint" 
 
 An example Api for this would be
 ```
