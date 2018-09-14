@@ -1,0 +1,26 @@
+{
+  "name": "test_mailgun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.16.3",
+    "get-age": "^1.0.1",
+    "mailgun-js": "^0.20.0",
+    "mocha": "^5.2.0",
+    "read-last-lines": "^1.6.0",
+    "readline-specific": "^1.0.4",
+    "sync-request": "^6.0.0",
+    "var": "^0.3.2"
+  }
+}
