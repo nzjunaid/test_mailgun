@@ -9,7 +9,7 @@ Run the server using the command
 	
 	
 
-For Post Api which is used for inseting values to the file,give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.It is in form urlencoded format.For the above given api, all invalid entries (invalid name , invalid email , age>120 , age<16 ) will be rejected , even though date of birth is optional , invalid date of births are not allowed.
+For Post Api which is used for inseting values to the file,give a post request to 'localhost:8080/'with 'name','email' and 'dateofbirth parameters' in json format.It is in form urlencoded format.For the above given api, all invalid entries (invalid name , invalid email , age>120 , age<16 ) will be rejected.Even though date of birth is optional (date of birth can be null) , invalid date of births are not allowed i.e age>120 and age<16 is no allowed.
 
 An example for the insert would be
 
