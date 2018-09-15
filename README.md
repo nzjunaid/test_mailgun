@@ -27,7 +27,7 @@ For the above given api, all invalid entries ( invalid name , invalid email , ag
 
 For Get Api which is used for retrieving all the contents from the file , give  a get request to " localhost:8080/allcontent " 
 
-An example for getting all 
+An example for getting all the contents would be
 
 ```
 	curl -XGET localhost:8080/allcontent 
