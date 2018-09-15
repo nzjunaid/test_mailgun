@@ -4,7 +4,6 @@ var chaiHttp = require('chai-http');
 var assert=require("assert");
 chai.use(chaiHttp);
 app=app.app;
-var syncrequest = require('sync-request');
 describe("insert values",function(){
 
 	/*it("should return 200 if valid inputs",function(){
@@ -26,7 +25,9 @@ describe("insert values",function(){
 		.send({"name":"","email":"sachin@gmail.com","dateofbirth":"1997-09-16"})
 		.then(function(res){
 			assert.equal(res.status,400);
-		})
+			console.log("insert failed because of invalid name , status = ",res.status);
+
+		});
 
 	});
 
@@ -38,7 +39,9 @@ describe("insert values",function(){
 		.send({"name":"abcd","email":"","dateofbirth":"1997-09-16"})
 		.then(function(res){
 			assert.equal(res.status,400);
-		})
+			console.log("insert failed because of invalid email , status = ",res.status);
+
+		});
 
 	});
 
@@ -50,8 +53,11 @@ describe("insert values",function(){
 		.type('form')
 		.send({"name":"abcd","email":"junaidnz97@gmai.com","dateofbirth":"2016-09-16"})
 		.then(function(res){
+
 			assert.equal(res.status,400);
-		})
+			console.log("insert failed because of invalid dateofbirth , status = ",res.status," ,reason = ",res.text);
+
+		});
 
 	});
 
@@ -64,6 +70,8 @@ describe("get contents",function(){
 		.get('/allcontent')
 		.then(function(res){
 			assert.equal(res.status,200);
+			console.log("all contents retrieved , status = ",res.status," , total number of items retrieved = ",res.body.length);	
+
 		});
 	});
 
@@ -72,6 +80,7 @@ describe("get contents",function(){
 		.get('/getlatestendpoint')
 		.then(function(res){
 			assert.equal(res.status,200);
+			console.log("last entry retrieved , status = ",res.status);
 		});
 	});
 
@@ -81,6 +90,7 @@ describe("get contents",function(){
 		.get('/getxthcontent?x=3')
 		.then(function(res){
 			assert.equal(res.status,200);
+			console.log("xth content retrieved , status = ",res.status);
 		});
 	});
 
@@ -89,6 +99,8 @@ describe("get contents",function(){
 		.get('/getxthcontent?x=1000')
 		.then(function(res){
 			assert.equal(res.status,404);
+			console.log("xth content not retrieved because of ivalid x, status = ",res.status);
+
 		});
 	});
 
@@ -98,7 +110,7 @@ describe("get contents",function(){
 
 describe("integrated test",function(){
 
-	it("integrated_test",function(){
+	it("integrated_test",function(done){
 
 		var last_num=0;
 		var last_body=undefined;
@@ -112,11 +124,13 @@ describe("integrated test",function(){
 				{
 					last_num=i;
 					last_body=res.body;
+					console.log("Last entry retrieved = ",last_num);
 					fun(i+1);
 				}
 				else if(res.status==404)
 				{
 				
+					console.log("All entries are successfully retrieved");
 					last_num=i-1;
 					chai.request(app)
 					.get("/getlatestendpoint")
@@ -128,6 +142,7 @@ describe("integrated test",function(){
 						.send({"name":"","email":"sachin@gmail.com","dateofbirth":"1997-09-16"})
 						.then(function(res){
 							assert.equal(res.status,400);
+							console.log("insert failed because of invalid name , status = ",res.status);
 						});
 
 						chai.request(app)
@@ -136,6 +151,7 @@ describe("integrated test",function(){
 						.send({"name":"abcd","email":"","dateofbirth":"1997-09-16"})
 						.then(function(res){
 							assert.equal(res.status,400);
+							console.log("insert failed because of invalid email , status = ",res.status);
 						});
 
 						chai.request(app)
@@ -145,6 +161,7 @@ describe("integrated test",function(){
 						.then(function(res){
 							assert.equal(res.status,400);
 							assert.equal(res.text,"too young");
+							console.log("insert failed because of invalid age , status = ",res.status," ,reason = ",res.text);
 						});
 
 						chai.request(app)
@@ -154,6 +171,7 @@ describe("integrated test",function(){
 						.then(function(res){
 							assert.equal(res.status,400);
 							assert.equal(res.text,"too old");
+							console.log("insert failed because of invalid age , status = ",res.status," , reason = ",res.text);
 						});
 
 						chai.request(app)
@@ -162,6 +180,8 @@ describe("integrated test",function(){
 						.send({"name":"nivin","email":"nivin@gmail.com","dateofbirth":"1997-07-16"})
 						.then(function(res){
 							assert.equal(res.status,200);
+							console.log("inserted successfully , status = ",res.status);
+							done();
 						});
 					});
 				}
